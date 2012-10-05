@@ -1,23 +1,23 @@
-<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.90821500 1349453608";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"E:\www\Nette-Dateinput\app\templates\@layout.latte";i:2;i:1349453593;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f8aa369 released on 2012-08-30";}}}?><?php
+<?php //netteCache[01]000372a:2:{s:4:"time";s:21:"0.35071800 1349455788";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:50:"E:\www\Nette-Dateinput\app\templates\@layout.latte";i:2;i:1349455784;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f8aa369 released on 2012-08-30";}}}?><?php
 
 // source file: E:\www\Nette-Dateinput\app\templates\@layout.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, '0ux95jk4dd')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'oz9kxjd1c7')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block title
 //
-if (!function_exists($_l->blocks['title'][] = '_lb2859c1bd0a_title')) { function _lb2859c1bd0a_title($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['title'][] = '_lbd6a62c0e40_title')) { function _lbd6a62c0e40_title($_l, $_args) { extract($_args)
 ?>Nette Application Skeleton<?php
 }}
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb0247129d20_head')) { function _lb0247129d20_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb333eb2f442_head')) { function _lb333eb2f442_head($_l, $_args) { extract($_args)
 ;
 }}
 
@@ -54,11 +54,16 @@ if ($_l->extends) {
 ob_start(); call_user_func(reset($_l->blocks['title']), $_l, get_defined_vars()); echo $template->upper($template->striptags(ob_get_clean()))  ?></title>
 
 	<link rel="stylesheet" media="screen,projection,tv" href="<?php echo htmlSpecialChars($basePath) ?>/css/screen.css" type="text/css" />
+        <link rel="stylesheet" media="screen,projection,tv" href="<?php echo htmlSpecialChars($basePath) ?>/css/jquery-ui-timepicker-addon.css" type="text/css" />
 	<link rel="stylesheet" media="print" href="<?php echo htmlSpecialChars($basePath) ?>/css/print.css" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo htmlSpecialChars($basePath) ?>/css/dateInput.css" />
 	<link rel="shortcut icon" href="<?php echo htmlSpecialChars($basePath) ?>/favicon.ico" type="image/x-icon" />
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<?php echo htmlSpecialChars($basePath) ?>/js/netteForms.js"></script>
+        <script type="text/javascript" src="<?php echo htmlSpecialChars($basePath) ?>/js/jquery-ui-timepicker-addon.js"></script>
+        <script type='text/javascript' src="<?php echo htmlSpecialChars($basePath) ?>/js/dateInput.js"></script>
 	<?php call_user_func(reset($_l->blocks['head']), $_l, get_defined_vars())  ?>
 
 </head>

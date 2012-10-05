@@ -24,6 +24,9 @@ $configurator->createRobotLoader()
 	->addDirectory(LIBS_DIR)
 	->register();
 
+
+Vodacek\Forms\Controls\DateInput::register();
+
 // Create Dependency Injection container from config.neon file
 $configurator->addConfig(__DIR__ . '/config/config.neon');
 $container = $configurator->createContainer();
