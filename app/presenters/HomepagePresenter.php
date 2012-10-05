@@ -1,5 +1,7 @@
 <?php
 
+use Vodacek\Forms\Controls\DateInput;
+
 /**
  * Homepage presenter.
  */
@@ -21,6 +23,8 @@ class HomepagePresenter extends BasePresenter
         $form->addDate('week', 'Week', DateInput::TYPE_WEEK);
         $form->addDate('time', 'Time', DateInput::TYPE_TIME);
         $form->addSubmit('save', 'Save');
+        
+        return $form;
     }
 
 }

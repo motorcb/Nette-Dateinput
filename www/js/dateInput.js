@@ -37,7 +37,7 @@
 	/***************************************************************************
 	 * override datepicker formatDate method for week formating support
 	 **************************************************************************/
-	$.datepicker._base_formatDate = $.datepicker.formatDate;
+	var proxied = $.datepicker.formatDate;
 	$.datepicker.formatDate = function(format, date, settings) {
 		// mostly from jquery.ui.datepicker.js
 		if (!date)
@@ -61,29 +61,28 @@
 		var calculateWeek = (settings ? settings.calculateWeek : null) || this._defaults.calculateWeek;
 		var output = '';
 		var literal = false;
-		if (date)
-			for (var iFormat = 0; iFormat < format.length; iFormat++) {
-				if (literal)
-					if (format.charAt(iFormat) == "'") {
+		for (var iFormat = 0; iFormat < format.length; iFormat++) {
+			if (literal) {
+				if (format.charAt(iFormat) == "'") {
+					literal = false;
+				}
+				output += format.charAt(iFormat);
+			} else {
+				switch (format.charAt(iFormat)) {
+					case 'w':
+						output += formatNumber('w', calculateWeek(date), 2);
+						break;
+					case "'":
 						output += "'";
-						literal = false;
-					}
-					else
+						literal = true;
+						break;
+					default:
 						output += format.charAt(iFormat);
-				else
-					switch (format.charAt(iFormat)) {
-						case 'w':
-							output += formatNumber('w', calculateWeek(date), 2);
-							break;
-						case "'":
-							output += "'";
-							literal = true;
-							break;
-						default:
-							output += format.charAt(iFormat);
-					}
-			};
-		return this._base_formatDate(output, date, settings);
+				}
+			}
+		};
+		arguments[0] = output;
+		return proxied.apply(this, arguments);
 	}
 	/***************************************************************************
 	 * date parsing functions
@@ -204,14 +203,14 @@
 
 			// create alt field
 			this.type = 'text';
-			var alt = t.clone().attr('id', null);
+			var alt = t.clone().removeAttr('id');
 			try {
 				alt.get(0).type = 'hidden';
 			} catch (exception) {
 				// fix for: http://webbugtrack.blogspot.com/2007/09/bug-237-type-is-readonly-attribute-in.html
 				alt = $(alt.get(0).outerHTML.replace(/ type=(['"]?)[a-z-]+\1/, ' type="hidden"'));
 			}
-			t.attr('name', null);
+			t.removeAttr('name');
 			t.val(null);
 			t.after(alt);
 			t.data('altField', alt);
@@ -250,6 +249,7 @@
 						onSelect: function(dateText, inst) {
 							if (!selectedDate) {
 								selectedDate = new Date();
+								selectedDate.setHours(0, 0, 0, 0);
 							}
 							if (inst.hour !== undefined) {
 								selectedDate.setHours(inst.hour, inst.minute, inst.second);
@@ -261,11 +261,11 @@
 								minute: selectedDate.getMinutes(),
 								second: selectedDate.getSeconds()
 							};
+							var value = $.datepicker.formatDate('yy-mm-dd', selectedDate) + 'T' + $.timepicker._formatTime(tp, 'hh:mm:ss', false);
 							if (type == 'datetime') {
-								alt.val($.datepicker.formatDate('yy-mm-dd', selectedDate) + 'T' + $.timepicker._formatTime(tp, 'hh:mm:ss', false) + 'Z');
-							} else {
-								alt.val($.datepicker.formatDate('yy-mm-dd', selectedDate) + 'T' + $.timepicker._formatTime(tp, 'hh:mm:ss', false));
+								value += 'Z';
 							}
+							alt.val(value);
 						}
 					});
 					break;
@@ -365,5 +365,19 @@
 			}
 		});
 		return this;
+	};
+
+	// Nette validators
+	Nette.validators.dateInputValid = function(elem, arg, val) {
+		var el = $(elem);
+		var type = el.attr('data-dateinput-type');
+		var format = globalSettings[type].validFormat;
+		val = el.data('altField').val();
+		return (new RegExp('^(' + format + ')$')).test(val);
+	};
+	Nette.validators.dateInputRange = function(elem, arg, val) {
+		var el = $(elem);
+		val = el.data('altField').val();
+		return Nette.isArray(arg) ? ((arg[0] === null || val >= arg[0]) && (arg[1] === null || val <= arg[1])) : null;
 	};
 })(jQuery);

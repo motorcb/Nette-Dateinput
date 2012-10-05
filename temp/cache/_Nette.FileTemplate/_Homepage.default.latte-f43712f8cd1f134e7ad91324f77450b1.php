@@ -1,19 +1,19 @@
-<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.08944600 1349453844";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"E:\www\Nette-Dateinput\app\templates\Homepage\default.latte";i:2;i:1349453654;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f8aa369 released on 2012-08-30";}}}?><?php
+<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.57794500 1349467218";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"E:\www\Nette-Dateinput\app\templates\Homepage\default.latte";i:2;i:1349467148;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"f8aa369 released on 2012-08-30";}}}?><?php
 
 // source file: E:\www\Nette-Dateinput\app\templates\Homepage\default.latte
 
 ?><?php
 // prolog Nette\Latte\Macros\CoreMacros
-list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'd08ke8iz0s')
+list($_l, $_g) = Nette\Latte\Macros\CoreMacros::initRuntime($template, 'lbm3n2l9d3')
 ;
 // prolog Nette\Latte\Macros\UIMacros
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb0b6bfbc251_content')) { function _lb0b6bfbc251_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb937c024094_content')) { function _lb937c024094_content($_l, $_args) { extract($_args)
 ?><h1>Congratulations!</h1>
 
-<?php
+<?php $_ctrl = $_control->getComponent("taskForm"); if ($_ctrl instanceof Nette\Application\UI\IRenderable) $_ctrl->validateControl(); $_ctrl->render() ;
 }}
 
 //
