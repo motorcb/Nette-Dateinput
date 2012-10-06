@@ -16,6 +16,7 @@ class HomepagePresenter extends BasePresenter
     protected function createComponentTaskForm()
     {
         $form = new Nette\Application\UI\Form();
+               
         $form->addDate('date', 'Date', DateInput::TYPE_DATE);
         $form->addDate('datetime', 'Datetime', DateInput::TYPE_DATETIME);
         $form->addDate('datetimeLocal', 'Local datetime', DateInput::TYPE_DATETIME_LOCAL);
