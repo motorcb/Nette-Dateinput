@@ -21,3 +21,5 @@
     font-weight: bold;
 	text-decoration: none;
 }
+
+#ui-datepicker-div, .ui-datepicker{ font-size: 80%; }
