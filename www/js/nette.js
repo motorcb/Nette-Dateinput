@@ -35,11 +35,11 @@ $(function() {
     $('input[data-dateinput-type]').dateinput({
         datetime: {
             dateFormat: 'd.m.yy',
-            timeFormat: 'h:mm'
+            timeFormat: 'h:mm:ss'
         },
         'datetime-local': {
             dateFormat: 'd.m.yy',
-            timeFormat: 'h:mm'
+            timeFormat: 'h:mm:ss'
         },
         date: {
             dateFormat: 'd.m.yy'
@@ -51,7 +51,7 @@ $(function() {
             dateFormat: "w. 'týden' yy"
         },
         time: {
-            timeFormat: 'h:mm'
+            timeFormat: 'h:mm:ss'
         }
 
     });
