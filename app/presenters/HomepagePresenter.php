@@ -30,9 +30,20 @@ class HomepagePresenter extends BasePresenter
                 ->addRule(Form::FILLED, 'Je nutné zadat datum');
         $form->addDate('time', 'Time', DateInput::TYPE_TIME)
                 ->addRule(Form::FILLED, 'Je nutné zadat datum');
+        $form->onSuccess[] = $this->formSubmitted;
         $form->addSubmit('save', 'Save');
         
         return $form;
+    }
+    
+    public function formSubmitted(Form $form)
+    {
+        $values = $form->getValues(TRUE); // same as: (array) $form->values;
+        foreach( $values as $value )
+        {
+            //echo date("j.n.Y H:i:s",$value)."<br/>\n";
+            echo $value->format("j.n.Y H:i:s")."<br/>\n";
+        }
     }
 
 }
